@@ -1,0 +1,363 @@
+import { useState } from 'react'
+import { ChevronDown, ChevronUp, Phone, MessageCircle, Instagram, MapPin, Star, ArrowRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+export default function Component() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0)
+
+  const testimonials = [
+    { text: "Olivia made me feel so at ease, and my hair looks amazing! I'll definitely be back.", author: "Sarah" },
+    { text: "Absolutely love my new hair colour! Olivia is a true professional.", author: "Emily" },
+    { text: "The best hairdressing experience I've ever had. Highly recommend!", author: "Jess" },
+  ]
+
+  const services = {
+    "Colour Services": [
+      {
+        name: "Bespoke Blonde",
+        description: "Full head of babylights, money piece, root melt or shadow and toner. Creates a seamless, maximum blonde effect. Perfect for the trending 'Old Money' blonde look.",
+        price: "£95.00",
+        duration: "3h 30min"
+      },
+      {
+        name: "Full Head Highlights",
+        description: "Complete head of high or low light foils. Includes toner & blow-dry. Typically alternated with half head or T-section highlights.",
+        price: "£75.00",
+        duration: "3h"
+      },
+      {
+        name: "Half Head Highlights",
+        description: "Partial head of high or low light foils. Includes toner & blow-dry.",
+        price: "£65.00",
+        duration: "2h 30min"
+      },
+      {
+        name: "T-Section Highlights",
+        description: "Foils through parting and sides, maintaining darker underneath. Includes toner & blow-dry.",
+        price: "£60.00",
+        duration: "2h 15min"
+      },
+      {
+        name: "Balayage",
+        description: "Scattered foils, placed under the parting for a low-maintenance look. Focuses on lengths, ends, and face-framing.",
+        price: "£75.00",
+        duration: "3h"
+      },
+      {
+        name: "Money Piece/Partial Foils",
+        description: "Brightens face-framing sections. Can be subtle or bold, customised to your preference.",
+        price: "£40.00",
+        duration: "1h"
+      },
+      {
+        name: "Scandinavian Hairline",
+        description: "Soft blonde highlight around the hairline for a fresh, Scandinavian-inspired look.",
+        price: "£10.00",
+        duration: "20min"
+      },
+      {
+        name: "Toner",
+        description: "Adjust your blonde to be ashier, warmer, or creamier.",
+        price: "£15.00",
+        duration: "30min"
+      },
+      {
+        name: "Toner & Blow-dry",
+        description: "Toner application followed by a professional blow-dry.",
+        price: "£25.00",
+        duration: "1h"
+      },
+      {
+        name: "Scalp Bleach & Toner",
+        description: "Direct root bleaching and toning. 48-hour unwashed hair recommended. 8-week intervals advised. Olaplex add-on recommended for £20.",
+        price: "£50.00",
+        duration: "2h"
+      },
+      {
+        name: "Regrowth Colour",
+        description: "Touch up your roots to maintain your existing colour.",
+        price: "£40.00",
+        duration: "1h 30min"
+      },
+      {
+        name: "Full Head Colour",
+        description: "Complete all-over colour application for a fresh, consistent look.",
+        price: "£50.00",
+        duration: "1h 30min"
+      },
+      {
+        name: "Colour Correction",
+        description: "Gradual lightening process for dark-dyed hair. Multiple sessions required. Includes take-home colour for maintenance.",
+        price: "£85.00+",
+        duration: "3h 30min"
+      },
+      {
+        name: "Olaplex",
+        description: "Add-on treatment to reduce breakage during colour services.",
+        price: "£20.00",
+        duration: "5min"
+      }
+    ],
+    "Cutting & Styling Services": [
+      {
+        name: "Cut & Finish",
+        description: "Wash, cut, and blow-dry. Note: Clipper cuts, pixies, graduated bobs, and undercuts not offered.",
+        price: "£30.00",
+        duration: "1h"
+      },
+      {
+        name: "Blow-dry",
+        description: "Professional blow-dry for a sleek and polished finish.",
+        price: "£20.00",
+        duration: "30min"
+      },
+      {
+        name: "Festival Hair",
+        description: "Fun and vibrant styles perfect for festivals and special events.",
+        price: "£25.00",
+        duration: "30min"
+      },
+      {
+        name: "Prom/Wedding Guest Hair",
+        description: "Elegant styling ideal for proms or weddings.",
+        price: "£25.00",
+        duration: "45min"
+      }
+    ],
+    "Free Services": [
+      {
+        name: "Patch Test",
+        description: "Required for any colour service where dye touches the skin (except foils).",
+        price: "Free",
+        duration: "5min"
+      },
+      {
+        name: "Consultation",
+        description: "Discuss your hair goals and service options. Available in-person or via text.",
+        price: "Free",
+        duration: "10min"
+      }
+    ],
+    "Extensions": [
+      {
+        name: "Extensions Consultation",
+        description: "Discuss tape extensions and micro rings options to find the best fit for you.",
+        price: "Free",
+        duration: "20min"
+      }
+    ]
+  }
+
+  return (
+    <div className="min-h-screen bg-[#fdf6f6] text-gray-800 font-sans">
+      {/* Header */}
+      <header className="sticky top-0 bg-white shadow-sm z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-3xl font-serif font-light text-[#f0b4b4]">Hair by Olivia</h1>
+          <div className="flex items-center space-x-4">
+            <a href="tel:07493555774" className="text-[#f0b4b4] hover:text-[#e89b9b] transition-colors">
+              <Phone size={24} />
+              <span className="sr-only">Call us</span>
+            </a>
+            <a href="https://wa.me/447493555774" className="text-[#f0b4b4] hover:text-[#e89b9b] transition-colors">
+              <MessageCircle size={24} />
+              <span className="sr-only">WhatsApp us</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Announcement Bar */}
+      <div className="bg-[#f0b4b4] text-white py-2 px-4 text-center">
+        <p className="text-sm md:text-base font-light">
+          Call or WhatsApp to book: <a href="tel:07493555774" className="underline hover:text-[#fdf6f6]">07493 555774</a>
+        </p>
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-cover bg-center" style={{backgroundImage: "url('/placeholder.svg?height=800&width=1200')"}}>
+        <div className="absolute inset-0 bg-[#f0b4b4] bg-opacity-40 flex flex-col justify-center items-center text-white p-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-light mb-4 text-center">Welcome to Hair by Olivia</h2>
+          <p className="text-xl md:text-2xl mb-8 text-center max-w-2xl font-light">Professional Hairdressing in a Relaxed Home Salon</p>
+          <Button size="lg" className="bg-[#f0b4b4] hover:bg-[#e89b9b] text-white font-light">
+            Book Your Appointment Today
+          </Button>
+        </div>
+      </section>
+
+      {/* About Olivia */}
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">About Me</h2>
+          <Card className="max-w-4xl mx-auto p-8 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <img src="/placeholder.svg?height=300&width=300" alt="Olivia" className="rounded-full w-64 h-64 object-cover shadow-md" />
+              <div className="space-y-4">
+                <p className="text-base md:text-lg leading-relaxed font-light">
+                  Hi lovely ladies! I'm Olivia. I'm a super friendly, non-judgmental hairdresser with 8 years' experience. I'm currently working out of my little home salon where I live with my two little girls and golden retriever, Bailey.
+                </p>
+                <p className="text-base md:text-lg leading-relaxed font-light">
+                  My girls won't always be there, however Bailey will usually be there so if you aren't a dog person it's probably not the salon for you, I'm really sorry!
+                </p>
+                <p className="text-base md:text-lg leading-relaxed font-light">
+                  It may not be the fanciest salon experience but it will definitely be a relaxed and welcoming one!
+                </p>
+                <p className="text-base md:text-lg leading-relaxed font-light">
+                  I look forward to seeing you soon!
+                </p>
+                <p className="text-xl md:text-2xl font-serif font-light text-[#f0b4b4]">Olivia xx</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-16 px-4 bg-[#fdf6f6]">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">Services</h2>
+          <div className="max-w-3xl mx-auto">
+            <p className="mb-8 text-center text-base md:text-lg leading-relaxed font-light">
+              At Hair by Olivia, I offer a range of tailored hairdressing services. Using high-quality products like Moroccanoil colours and Kérastase treatments, I create stunning styles that you'll love.
+            </p>
+            <Accordion type="single" collapsible className="space-y-4">
+              {Object.entries(services).map(([category, serviceList]) => (
+                <AccordionItem key={category} value={category}>
+                  <AccordionTrigger className="text-lg md:text-xl font-serif font-light text-[#f0b4b4] hover:text-[#e89b9b]">
+                    {category}
+                  </AccordionTrigger>
+                  <AccordionContent className="p-4 bg-white rounded-b-lg shadow-inner">
+                    <ul className="space-y-6">
+                      {serviceList.map((service, index) => (
+                        <li key={index} className="border-b border-gray-200 pb-4 last:border-b-0 last:pb-0">
+                          <div className="flex justify-between items-start mb-2">
+                            <h3 className="text-base md:text-lg font-light text-[#f0b4b4]">{service.name}</h3>
+                            <div className="text-right">
+                              <span className="font-light">{service.price}</span>
+                              <span className="text-sm text-gray-600 block font-light">{service.duration}</span>
+                            </div>
+                          </div>
+                          {service.description && (
+                            <p className="text-sm text-gray-600 font-light">{service.description}</p>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">Gallery</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <img key={i} src={`/placeholder.svg?height=400&width=400&text=Hair+Style+${i}`} alt={`Hair Style ${i}`} className="w-full h-auto rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" className="inline-flex items-center text-[#f0b4b4] border-[#f0b4b4] hover:bg-[#f0b4b4] hover:text-white transition-colors font-light">
+              <Instagram className="mr-2" size={24} />
+              See More on Instagram
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 px-4 bg-[#fdf6f6]">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">What Clients Say</h2>
+          <div className="max-w-2xl mx-auto">
+            <Card className="p-8 shadow-lg">
+              <p className="text-lg md:text-xl mb-6 italic font-light">{testimonials[activeTestimonial].text}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-[#f0b4b4] flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={20} fill="currentColor" />
+                  ))}
+                </span>
+                <span className="font-light text-[#f0b4b4]">— {testimonials[activeTestimonial].author}</span>
+              </div>
+            </Card>
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTestimonial(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    index === activeTestimonial ? 'bg-[#f0b4b4]' : 'bg-[#f8d7d7]'
+                  }`}
+                  aria-label={`View testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Information */}
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">How to Book</h2>
+          <Card className="max-w-3xl mx-auto p-8 shadow-lg">
+            <p className="text-base md:text-lg leading-relaxed mb-6 font-light">
+              Feel free to drop me a message if you're not sure what to book. I can offer consultations in person or over text if it's easier for you. Please note that colour services where the dye touches the skin (everything apart from foils) require a patch test. If you're unable to come in for one and have had regular colour services without any issues, you're welcome to sign a disclaimer form at your appointment.
+            </p>
+            <p className="text-base md:text-lg leading-relaxed mb-8 font-light">
+              Upon booking, I'll text you the full address.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <Button size="lg" className="bg-[#f0b4b4] hover:bg-[#e89b9b] text-white font-light">
+                <Phone className="mr-2" size={20} />
+                Call: 07493 555774
+              </Button>
+              <Button size="lg" variant="outline" className="text-[#f0b4b4] border-[#f0b4b4] hover:bg-[#f0b4b4] hover:text-white font-light">
+                <MessageCircle className="mr-2" size={20} />
+                WhatsApp: 07493 555774
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Location & Contact */}
+      <section className="py-16 px-4 bg-[#fdf6f6]">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-12 text-[#f0b4b4]">Find Me</h2>
+          <Card className="max-w-xl mx-auto p-8 shadow-lg">
+            <div className="flex items-center justify-center mb-6">
+              <MapPin size={28} className="mr-3 text-[#f0b4b4]" />
+              <p className="text-lg md:text-xl font-light">Greenfield Crescent, Nailsea, BS48 1HW, Bristol</p>
+            </div>
+            <p className="text-center mb-8 text-base md:text-lg font-light">Upon booking, I'll provide you with the full address.</p>
+            <Button size="lg" className="w-full bg-[#f0b4b4] hover:bg-[#e89b9b] text-white font-light">
+              Get Directions
+              <ArrowRight className="ml-2" size={20} />
+            </Button>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#f0b4b4] text-white py-12 px-4">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-center justify-center space-y-4 mb-8">
+            <a href="https://www.instagram.com/oliviahairstylist" className="hover:text-[#fdf6f6] transition-colors flex items-center space-x-2">
+              <Instagram size={28} />
+              <span className="text-lg font-light">@oliviahairstylist</span>
+            </a>
+          </div>
+          <p className="text-center text-sm font-light">© 2023 Hair by Olivia. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  )
+}
